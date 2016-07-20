@@ -71,44 +71,57 @@ describe Hand do
     expect{empty_hand.discard(c4,d4,s3,s2,s6)}.to raise_error("You don't have that many cards.")
   end
 
-  it "should be able to find a straight flush" do
-
+  it "should be able to find cards in current hand which make a straight flush" do
+    expect(straight_flush.straight_flush).to eq([s2,s3,s4,s5,s6])
   end
 
-  it "should be able to find a higher straight flush"
 
-  it "should not mix up a straight flush with a straight"
+  it "should be able to find cards in current hand which make a four of a kind" do
+    expect(four_of_a_kind.four_of_a_kind).to eq([c4,d4,h4,s4])
+  end
 
-  it "should not mix up a straight flush with a flush"
+  it "should be able to find cards in current hand which make a full house" do
+    expect(full_house.full_house).to eq([c4,d4,h4,c3,s3])
+  end
 
-  it "should be able to find a four of a kind"
+  it "should be able to find cards in current hand which make a flush" do
+    expect(flush.flush).to eq([s2,s3,s4,s5,sk])
+  end
 
-  it "should be able to find a higher four of a kind"
+  it "should be able to find cards in current hand which make a straight" do
+    expect(straight.straight).to eq([s2,s3,c4,s5,s6])
+  end
 
-  it "should not mix up a four of a kind with two pairs"
+  it "should be able to find cards in current hand which make a three of a kind" do
+    expect(three_of_a_kind.three_of_a_kind).to eq([c4,d4,h4])
+  end
+
+  it "should be able to find cards in current hand which make a two pairs" do
+    expect(two_pair.two_pair).to eq([c4,d4,s3,c3])
+  end
+
+  it "should be able to find cards in current hand which make a one pair" do
+    expect(hand_pair.one_pair).to eq([c4,d4])
+  end
+
+  it "should be able to find and return the highest card" do
+    expect(hand_pair.high_card).to eq([s6])
+  end
+
+  it "should not mix up a straight flush with a straight or flush" do
+    expect(straight_flush.find_strongest_combo).to eq(:straight_flush)
+    expect(straight_flush.winning_hand).to eq([s2,s3,s4,s5,s6])
+  end
+
+  it "should not mix up a four of a kind with two pairs"do
+    expect(four_of_a_kind.find_strongest_combo).to eq(:four_of_a_kind)
+    expect(four_of_a_kind.winning_hand).to eq([c4,d4,h4,s4])
+  end
 
   it "should not mix up a four of a kind with a pair"
-
-  it "should be able to find a full house"
-
-  it "should be able to find a higher full house"
 
   it "should not mix up a full house with a three of a kind"
 
   it "should not mix up a full house with a pairs"
-
-  it "should be able to find a flush"
-
-  it "should be able to find a straight"
-
-  it "should be able to find a three of a kind"
-
-  it "should be able to find two pairs"
-
-  it "should be able to find one pair" do
-    expect(hand_pair.find_strongest_combo).to eq(:one_pair?)
-  end
-
-  it "should find the highest card"
 
 end
