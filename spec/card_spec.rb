@@ -14,6 +14,7 @@ describe Card do
 
   it "should take two arguments to initialize" do
     expect{Card.new("arg1","arg2")}.to_not raise_error
+    expect{Card.new("arg1")}.to raise_error
   end
 
   it "should set it's own values upon initialization" do
@@ -21,5 +22,4 @@ describe Card do
     expect(card.value).to eq("arg1")
     expect(card.suit).to eq("arg2")
   end
-
 end
