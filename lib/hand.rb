@@ -39,12 +39,10 @@ class Hand
     highest_val = 0
     HAND_STRENGTH.each do |k, v|
       test_hand = self.send k
-      p test_hand
       if test_hand == []
         next
       elsif v > highest_val
         highest_val = v
-        p highest_val
         @winning_hand = test_hand
         @winning_hand_type = k
       end

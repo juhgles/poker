@@ -118,10 +118,9 @@ describe Hand do
     expect(four_of_a_kind.winning_hand).to eq([c4,d4,h4,s4])
   end
 
-  it "should not mix up a four of a kind with a pair"
-
-  it "should not mix up a full house with a three of a kind"
-
-  it "should not mix up a full house with a pairs"
+  it "should not mix up a full house with a three of a kind" do
+    expect(full_house.find_strongest_combo).to eq(:full_house)
+    expect(full_house.winning_hand).to eq([c4,d4,h4,c3,s3])
+  end
 
 end
