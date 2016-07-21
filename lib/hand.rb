@@ -25,14 +25,18 @@ class Hand
     @winning_hand_type
   end
 
-  def add_card(*cards)
-    raise "Your hand is full." if @current_hand.length >= 5
-    cards.each {|card| @current_hand << card }
+  def add_card(cards)
+    raise "Your hand is full." if (@current_hand.length + cards.length) > 5
+    @current_hand.concat(cards)
   end
 
-  def discard(*cards)
+  def discard(cards)
+    if cards=="fold"
+      @current_hand = []
+      return []
+    end
     raise "You don't have that many cards." if cards.length > @current_hand.length
-    cards.each {|card| @current_hand.delete(card) }
+    @current_hand -= cards
     end
 
   def find_strongest_combo
