@@ -74,7 +74,7 @@ describe "Player#discard" do
 end
 
 describe "Player fold" do
-  let(:game){double("Game",:fold => true)}
+  let(:game){double("Game")}
   let(:c4) {double("card", :suit => :clubs, :value => 4)}
   let(:d4) {double("card", :suit => :diamonds, :value => 4)}
   let(:c3) {double("card", :suit => :clubs, :value => 3)}
@@ -82,9 +82,10 @@ describe "Player fold" do
   it "should have a method of folding" do
     test = Player.new("Julia",game)
     test.add_card([c4,d4,c3])
+    expect(game).to receive(:fold).with(test)
     test.fold
     expect(test.hand.current_hand).to eq([])
-    expect(game).to receive(:fold).with(test)
+
   end
 
   it "should push itself as an argument to the game class"
